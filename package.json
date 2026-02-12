@@ -1,0 +1,34 @@
+{
+  "name": "goutguard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
+    "@capacitor/core": "^8.1.0",
+    "@capgo/native-purchases": "^8.0.22",
+    "next": "14.2.35",
+    "react": "^18",
+    "react-dom": "^18",
+    "recharts": "^3.7.0"
+  },
+  "devDependencies": {
+    "@capacitor/camera": "^8.0.0",
+    "@capacitor/cli": "^8.1.0",
+    "@capacitor/filesystem": "^8.1.0",
+    "@capacitor/haptics": "^8.0.0",
+    "@capacitor/ios": "^8.1.0",
+    "@capacitor/keyboard": "^8.0.0",
+    "@capacitor/local-notifications": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  }
+}
