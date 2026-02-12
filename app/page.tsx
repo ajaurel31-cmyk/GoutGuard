@@ -181,12 +181,23 @@ export default function Home() {
     <div className="page">
       {/* ── Greeting ───────────────────────────────────────────── */}
       <section style={{ marginBottom: 24 }}>
-        <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 4 }}>
-          {getGreeting()}
-        </h1>
-        <p style={{ fontSize: 14, color: 'var(--color-gray-500)' }}>
-          {getTodayDisplayDate()}
-        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
+          <img
+            src="/icon-192.png"
+            alt="GoutGuard"
+            width={44}
+            height={44}
+            style={{ borderRadius: 10 }}
+          />
+          <div>
+            <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 2 }}>
+              {getGreeting()}
+            </h1>
+            <p style={{ fontSize: 14, color: 'var(--color-gray-500)', margin: 0 }}>
+              {getTodayDisplayDate()}
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* ── Daily Purine Intake ─────────────────────────────────── */}
