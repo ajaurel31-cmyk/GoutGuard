@@ -1,14 +1,12 @@
 // Purine Database for GoutGuard
 // Comprehensive database of 500+ foods with purine content
 // Based on medical literature and nutritional research
-//
-// Total foods: 505
 
 export interface FoodItem {
   id: number;
   name: string;
-  category: 'Meats' | 'Seafood' | 'Vegetables' | 'Dairy' | 'Grains' | 'Beverages' | 'Fruits' | 'Nuts & Seeds' | 'Legumes' | 'Condiments & Sauces' | 'Sweets & Snacks';
-  purineContent: number; // mg per 100g
+  category: string;
+  purineContent: number;
   purineLevel: 'low' | 'moderate' | 'high' | 'very-high';
   servingSize: string;
   servingSizeGrams: number;
@@ -16,62 +14,6 @@ export interface FoodItem {
   goutNotes: string;
   alternatives?: string[];
 }
-
-export function getPurineLevel(mg: number): 'low' | 'moderate' | 'high' | 'very-high' {
-  if (mg >= 300) return 'very-high';
-  if (mg >= 200) return 'high';
-  if (mg >= 100) return 'moderate';
-  return 'low';
-}
-
-export function getPurineLevelColor(level: string): string {
-  switch (level) {
-    case 'low': return '#4CAF50';
-    case 'moderate': return '#FFC107';
-    case 'high': return '#FF9800';
-    case 'very-high': return '#F44336';
-    default: return '#9E9E9E';
-  }
-}
-
-export function searchFoods(query: string): FoodItem[] {
-  const lowerQuery = query.toLowerCase().trim();
-  if (!lowerQuery) return [];
-  return purineDatabase.filter((food) => {
-    return (
-      food.name.toLowerCase().includes(lowerQuery) ||
-      food.category.toLowerCase().includes(lowerQuery) ||
-      food.description.toLowerCase().includes(lowerQuery)
-    );
-  });
-}
-
-export function getFoodsByCategory(category: string): FoodItem[] {
-  return purineDatabase.filter((food) => food.category === category);
-}
-
-export function getFoodsByPurineLevel(level: string): FoodItem[] {
-  return purineDatabase.filter((food) => food.purineLevel === level);
-}
-
-export function getPurineLevelLabel(level: string): string {
-  switch (level) {
-    case 'low': return 'Low';
-    case 'moderate': return 'Moderate';
-    case 'high': return 'High';
-    case 'very-high': return 'Very High';
-    default: return level;
-  }
-}
-
-export const ALL_CATEGORIES = [
-  'Meats', 'Seafood', 'Vegetables', 'Dairy', 'Grains',
-  'Beverages', 'Fruits', 'Nuts & Seeds', 'Legumes',
-  'Condiments & Sauces', 'Sweets & Snacks',
-] as const;
-
-export type FoodCategory = FoodItem['category'];
-export type PurineLevel = FoodItem['purineLevel'];
 
 export const purineDatabase: FoodItem[] = [
   { id: 1, name: 'Beef Liver', category: 'Meats', purineContent: 554, purineLevel: 'very-high', servingSize: '100g', servingSizeGrams: 100, description: "Organ meat, pan-fried or braised", goutNotes: "Extremely high in purines. One of the worst foods for gout sufferers. Avoid completely during flares.", alternatives: ['Chicken breast', 'Turkey breast', 'Tofu'] },
@@ -581,4 +523,57 @@ export const purineDatabase: FoodItem[] = [
   { id: 504, name: 'Marshmallows', category: 'Sweets & Snacks', purineContent: 3, purineLevel: 'low', servingSize: '4 marshmallows (28g)', servingSizeGrams: 28, description: "Fluffy sugar confection", goutNotes: "Negligible purines." },
 ];
 
-export default purineDatabase;
+export function getPurineLevel(mg: number): 'low' | 'moderate' | 'high' | 'very-high' {
+  if (mg < 100) return 'low';
+  if (mg < 200) return 'moderate';
+  if (mg < 300) return 'high';
+  return 'very-high';
+}
+
+export function getPurineLevelColor(level: string): string {
+  switch (level) {
+    case 'low': return '#10b981';
+    case 'moderate': return '#f59e0b';
+    case 'high': return '#f97316';
+    case 'very-high': return '#ef4444';
+    default: return '#94a3b8';
+  }
+}
+
+export function searchFoods(query: string): FoodItem[] {
+  const q = query.toLowerCase().trim();
+  if (!q) return purineDatabase;
+  return purineDatabase.filter(f =>
+    f.name.toLowerCase().includes(q) ||
+    f.category.toLowerCase().includes(q) ||
+    f.description.toLowerCase().includes(q)
+  );
+}
+
+export function getFoodsByCategory(category: string): FoodItem[] {
+  if (!category || category === 'All') return purineDatabase;
+  return purineDatabase.filter(f => f.category === category);
+}
+
+export function getFoodsByPurineLevel(level: string): FoodItem[] {
+  if (!level || level === 'all') return purineDatabase;
+  return purineDatabase.filter(f => f.purineLevel === level);
+}
+
+export const categories = ['All', 'Meats', 'Seafood', 'Vegetables', 'Dairy', 'Grains', 'Beverages', 'Fruits', 'Nuts & Seeds', 'Legumes', 'Condiments & Sauces', 'Sweets & Snacks'];
+
+// Aliases used by the foods page
+export const ALL_CATEGORIES = categories.slice(1); // Without 'All'
+
+export type FoodCategory = FoodItem['category'];
+export type PurineLevel = FoodItem['purineLevel'];
+
+export function getPurineLevelLabel(level: string): string {
+  switch (level) {
+    case 'low': return 'Low';
+    case 'moderate': return 'Moderate';
+    case 'high': return 'High';
+    case 'very-high': return 'Very High';
+    default: return level;
+  }
+}

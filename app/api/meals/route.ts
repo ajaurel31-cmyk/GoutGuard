@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import Anthropic from '@anthropic-ai/sdk';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -251,11 +251,11 @@ export async function POST(request: NextRequest) {
     const body: MealRequestBody = await request.json();
     const { mealType = 'breakfast', dietaryFilters = [], goutStage = '' } = body;
 
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.ANTHROPIC_API_KEY;
 
     // If no API key, return the hardcoded fallback meals
     if (!apiKey) {
-      console.warn('OPENAI_API_KEY is not set. Returning fallback meal suggestions.');
+      console.warn('ANTHROPIC_API_KEY is not set. Returning fallback meal suggestions.');
 
       const category = mealType.toLowerCase();
       let fallback = FALLBACK_MEALS[category] || FALLBACK_MEALS['breakfast'];
@@ -291,19 +291,19 @@ ${stageText}
 
 Return ONLY a JSON array of meal objects. No additional text or explanation.`;
 
-    const openai = new OpenAI({ apiKey });
+    const anthropic = new Anthropic({ apiKey });
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o',
+    const response = await anthropic.messages.create({
+      model: 'claude-sonnet-4-5-20250929',
+      max_tokens: 2000,
+      system: SYSTEM_PROMPT,
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
       ],
-      max_tokens: 2000,
-      temperature: 0.7,
     });
 
-    const rawContent = response.choices[0]?.message?.content;
+    const textBlock = response.content.find((block) => block.type === 'text');
+    const rawContent = textBlock && 'text' in textBlock ? textBlock.text : null;
 
     if (!rawContent) {
       // Fall back to hardcoded meals on empty response

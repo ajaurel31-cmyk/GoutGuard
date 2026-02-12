@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import Anthropic from '@anthropic-ai/sdk';
 
 const SYSTEM_PROMPT = `You are a gout nutrition expert AI. Analyze the food in this image and provide a detailed purine content analysis for someone managing gout.
 
@@ -31,7 +31,8 @@ Purine levels reference:
 High-risk foods for gout: organ meats (liver, kidney), shellfish, red meat, beer, anchovies, sardines, herring, yeast extract, high-fructose corn syrup.
 Gout-friendly foods: cherries, low-fat dairy, most vegetables, whole grains, coffee, vitamin C rich foods, water.
 
-Be specific with purine estimates based on established nutritional data. Always err on the side of caution for gout sufferers.`;
+Be specific with purine estimates based on established nutritional data. Always err on the side of caution for gout sufferers.
+Return ONLY valid JSON, no markdown formatting or code blocks.`;
 
 const MOCK_RESULT = {
   foodIdentified: 'Grilled Chicken Salad with Mixed Greens',
@@ -42,58 +43,46 @@ const MOCK_RESULT = {
       name: 'Grilled Chicken Breast',
       purineLevel: 'moderate',
       purineEstimate: 175,
-      notes:
-        'Chicken has moderate purine content. Grilling is a better preparation method than frying for gout management.',
+      notes: 'Chicken has moderate purine content. Grilling is a better preparation method than frying for gout management.',
     },
     {
       name: 'Mixed Salad Greens',
       purineLevel: 'low',
       purineEstimate: 20,
-      notes:
-        'Leafy greens are very low in purines and high in beneficial nutrients. Excellent choice for gout sufferers.',
+      notes: 'Leafy greens are very low in purines and high in beneficial nutrients. Excellent choice for gout sufferers.',
     },
     {
       name: 'Cherry Tomatoes',
       purineLevel: 'low',
       purineEstimate: 10,
-      notes:
-        'Tomatoes are low in purines and contain vitamin C, which may help lower uric acid levels.',
+      notes: 'Tomatoes are low in purines and contain vitamin C, which may help lower uric acid levels.',
     },
     {
       name: 'Olive Oil Dressing',
       purineLevel: 'low',
       purineEstimate: 0,
-      notes:
-        'Healthy fats from olive oil do not contribute to purine intake and have anti-inflammatory properties.',
+      notes: 'Healthy fats from olive oil do not contribute to purine intake and have anti-inflammatory properties.',
     },
   ],
-  goutImpact:
-    'This meal has a moderate purine content, primarily from the chicken. The vegetables and olive oil dressing are gout-friendly choices. The overall meal is reasonably balanced for someone managing gout, though portion size of chicken should be monitored.',
+  goutImpact: 'This meal has a moderate purine content, primarily from the chicken. The vegetables and olive oil dressing are gout-friendly choices.',
   saferAlternatives: [
     'Replace chicken with tofu or tempeh for a lower-purine protein source',
-    'Add cherries or strawberries for their anti-inflammatory and uric-acid-lowering properties',
+    'Add cherries or strawberries for their anti-inflammatory properties',
     'Consider low-fat cheese crumbles as a partial protein replacement',
-    'Increase the proportion of vegetables relative to chicken',
   ],
-  flareAdvice:
-    'During an active gout flare, it is best to avoid this meal due to the moderate purine content from chicken. Stick to the salad greens portion only during a flare. Between flares, this meal is acceptable in moderation as part of a balanced diet.',
-  recommendation:
-    'This meal is acceptable between flares when consumed in moderate portions. Limit chicken to 3-4 oz per serving and load up on the vegetables. Pair with plenty of water to help flush uric acid. For optimal gout management, limit meals with moderate-purine proteins to once daily.',
+  flareAdvice: 'During an active gout flare, avoid this meal due to the moderate purine content from chicken. Stick to the salad greens portion only during a flare.',
+  recommendation: 'This meal is acceptable between flares when consumed in moderate portions. Limit chicken to 3-4 oz per serving.',
 };
 
 function extractJSON(text: string): string {
-  // Try to extract JSON from markdown code blocks first
   const codeBlockMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   if (codeBlockMatch) {
     return codeBlockMatch[1].trim();
   }
-
-  // Try to find JSON object directly
   const jsonMatch = text.match(/\{[\s\S]*\}/);
   if (jsonMatch) {
     return jsonMatch[0].trim();
   }
-
   return text.trim();
 }
 
@@ -109,51 +98,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.ANTHROPIC_API_KEY;
 
-    // If no API key configured, return mock response for testing
     if (!apiKey) {
-      console.warn(
-        'OPENAI_API_KEY is not set. Returning mock analysis result for testing.'
-      );
+      console.warn('ANTHROPIC_API_KEY is not set. Returning mock analysis result.');
       return NextResponse.json({ success: true, result: MOCK_RESULT });
     }
 
-    const openai = new OpenAI({ apiKey });
+    const anthropic = new Anthropic({ apiKey });
 
-    // Ensure the image is a proper data URL
-    let imageUrl = image;
-    if (!image.startsWith('data:')) {
-      imageUrl = `data:image/jpeg;base64,${image}`;
+    // Parse the base64 image — extract media type and data
+    let mediaType: 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp' = 'image/jpeg';
+    let imageData = image;
+
+    if (image.startsWith('data:')) {
+      const match = image.match(/^data:(image\/\w+);base64,(.+)$/);
+      if (match) {
+        mediaType = match[1] as typeof mediaType;
+        imageData = match[2];
+      }
     }
 
     const userMessage = prompt
       ? `${prompt}\n\nAnalyze this food image for purine content and gout risk.`
       : 'Analyze this food image for purine content and gout risk. Return the analysis as JSON only, no additional text.';
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o',
+    const response = await anthropic.messages.create({
+      model: 'claude-sonnet-4-5-20250929',
+      max_tokens: 2000,
+      system: SYSTEM_PROMPT,
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
         {
           role: 'user',
           content: [
-            { type: 'text', text: userMessage },
             {
-              type: 'image_url',
-              image_url: {
-                url: imageUrl,
-                detail: 'high',
+              type: 'image',
+              source: {
+                type: 'base64',
+                media_type: mediaType,
+                data: imageData,
               },
+            },
+            {
+              type: 'text',
+              text: userMessage,
             },
           ],
         },
       ],
-      max_tokens: 1500,
-      temperature: 0.3,
     });
 
-    const rawContent = response.choices[0]?.message?.content;
+    const textBlock = response.content.find((block) => block.type === 'text');
+    const rawContent = textBlock && 'text' in textBlock ? textBlock.text : null;
 
     if (!rawContent) {
       return NextResponse.json(
@@ -162,7 +158,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse the JSON response
     const jsonString = extractJSON(rawContent);
     let result;
     try {
@@ -170,21 +165,14 @@ export async function POST(request: NextRequest) {
     } catch {
       console.error('Failed to parse AI response as JSON:', rawContent);
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Failed to parse AI analysis. Please try again.',
-        },
+        { success: false, error: 'Failed to parse AI analysis. Please try again.' },
         { status: 500 }
       );
     }
 
-    // Validate required fields exist
     if (!result.foodIdentified || !result.overallRiskLevel) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Incomplete analysis result. Please try again.',
-        },
+        { success: false, error: 'Incomplete analysis result. Please try again.' },
         { status: 500 }
       );
     }
@@ -202,19 +190,13 @@ export async function POST(request: NextRequest) {
 
     if (error?.status === 429) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Rate limit exceeded. Please try again in a moment.',
-        },
+        { success: false, error: 'Rate limit exceeded. Please try again in a moment.' },
         { status: 429 }
       );
     }
 
     return NextResponse.json(
-      {
-        success: false,
-        error: 'An unexpected error occurred. Please try again.',
-      },
+      { success: false, error: 'An unexpected error occurred. Please try again.' },
       { status: 500 }
     );
   }
