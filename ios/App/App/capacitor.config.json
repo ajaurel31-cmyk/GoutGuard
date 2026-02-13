@@ -1,0 +1,28 @@
+{
+	"appId": "com.goutguard.app",
+	"appName": "GoutGuard",
+	"webDir": "out",
+	"plugins": {
+		"LocalNotifications": {
+			"smallIcon": "ic_stat_icon",
+			"iconColor": "#1a56db"
+		},
+		"Keyboard": {
+			"resize": "body",
+			"resizeOnFullScreen": true
+		}
+	},
+	"ios": {
+		"contentInset": "automatic",
+		"scheme": "GoutGuard"
+	},
+	"packageClassList": [
+		"NativePurchasesPlugin",
+		"CAPCameraPlugin",
+		"FilesystemPlugin",
+		"HapticsPlugin",
+		"KeyboardPlugin",
+		"LocalNotificationsPlugin",
+		"StatusBarPlugin"
+	]
+}
