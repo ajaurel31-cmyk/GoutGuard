@@ -41,6 +41,17 @@ function ThemeScript() {
           document.documentElement.setAttribute('data-theme', 'light');
         }
       } catch (e) {}
+      // Clear stale service workers and caches
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(r) { r.unregister(); });
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(n) { caches.delete(n); });
+        });
+      }
     })();
   `;
   return <script dangerouslySetInnerHTML={{ __html: script }} />;
