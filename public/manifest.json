@@ -1,6 +1,6 @@
 {
-  "name": "GoutCare",
-  "short_name": "GoutCare",
+  "name": "GoutGuard",
+  "short_name": "GoutGuard",
   "description": "AI-powered gout management with food scanning and health tracking",
   "start_url": "/",
   "display": "standalone",

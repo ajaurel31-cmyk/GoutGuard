@@ -46,7 +46,7 @@ export default function PremiumGate({ children, feature }: PremiumGateProps) {
         </div>
         <h2 className="premium-gate-title">Premium Feature</h2>
         <p className="premium-gate-description">
-          <strong>{feature}</strong> is available with GoutCare Premium.
+          <strong>{feature}</strong> is available with GoutGuard Premium.
           Unlock advanced features to better manage your gout and improve your health.
         </p>
         <button

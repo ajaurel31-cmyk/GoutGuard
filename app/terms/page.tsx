@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Terms of Service - GoutCare',
-  description: 'GoutCare Terms of Service',
+  title: 'Terms of Service - GoutGuard',
+  description: 'GoutGuard Terms of Service',
 };
 
 export default function TermsOfServicePage() {
@@ -36,8 +36,8 @@ export default function TermsOfServicePage() {
       {/* Introduction */}
       <section style={{ marginBottom: 28 }}>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          Welcome to GoutCare. These Terms of Service (&quot;Terms&quot;) govern your use of the GoutCare
-          mobile application (&quot;App&quot;), operated by GoutCare (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). By downloading,
+          Welcome to GoutGuard. These Terms of Service (&quot;Terms&quot;) govern your use of the GoutGuard
+          mobile application (&quot;App&quot;), operated by GoutGuard (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). By downloading,
           installing, or using the App, you agree to be bound by these Terms. If you do not agree to
           these Terms, do not use the App.
         </p>
@@ -49,7 +49,7 @@ export default function TermsOfServicePage() {
           1. App Description and Purpose
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          GoutCare is a health and wellness application designed to assist individuals managing gout. The
+          GoutGuard is a health and wellness application designed to assist individuals managing gout. The
           App provides AI-powered food scanning for purine content estimation, a comprehensive purine food
           database, uric acid level tracking, gout flare logging, medication reminders, and hydration
           tracking. The App is intended to serve as a supplementary tool to help users make more informed
@@ -72,7 +72,7 @@ export default function TermsOfServicePage() {
           }}
         >
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', fontWeight: 600 }}>
-            GoutCare is NOT a medical device and does NOT provide medical advice, diagnosis, or treatment.
+            GoutGuard is NOT a medical device and does NOT provide medical advice, diagnosis, or treatment.
           </p>
         </div>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
@@ -92,7 +92,7 @@ export default function TermsOfServicePage() {
           3. Subscription Terms
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginBottom: 12 }}>
-          GoutCare offers both free and premium subscription tiers:
+          GoutGuard offers both free and premium subscription tiers:
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>
@@ -116,7 +116,7 @@ export default function TermsOfServicePage() {
           4. Free Trial
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          New users may be eligible for a 7-day free trial of GoutCare Premium. The free trial provides
+          New users may be eligible for a 7-day free trial of GoutGuard Premium. The free trial provides
           full access to all premium features at no charge for the trial period. At the end of the 7-day
           trial, your subscription will automatically convert to a paid subscription at the rate you
           selected during sign-up unless you cancel before the trial period ends. You may cancel the free
@@ -138,7 +138,7 @@ export default function TermsOfServicePage() {
         <ol style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>Open the Settings app on your iPhone or iPad.</li>
           <li>Tap your name at the top, then tap &quot;Subscriptions.&quot;</li>
-          <li>Select GoutCare and tap &quot;Cancel Subscription.&quot;</li>
+          <li>Select GoutGuard and tap &quot;Cancel Subscription.&quot;</li>
         </ol>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginTop: 12 }}>
           Upon cancellation, you will retain access to premium features until the end of your current
@@ -153,7 +153,7 @@ export default function TermsOfServicePage() {
           6. User Responsibilities
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginBottom: 12 }}>
-          By using GoutCare, you agree to:
+          By using GoutGuard, you agree to:
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>Use the App only for its intended purpose of personal health tracking and information.</li>
@@ -175,7 +175,7 @@ export default function TermsOfServicePage() {
           7. Data Privacy
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          Your privacy is fundamental to GoutCare. All personal health data, including uric acid readings,
+          Your privacy is fundamental to GoutGuard. All personal health data, including uric acid readings,
           food logs, flare records, and settings, is stored locally on your device. We do not maintain user
           accounts, and we do not collect, transmit, or store your personal health information on external
           servers. When you use the AI food scanning feature, images are sent to a third-party AI service
@@ -194,9 +194,9 @@ export default function TermsOfServicePage() {
           8. Intellectual Property
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          All content, features, and functionality of the GoutCare App, including but not limited to its
+          All content, features, and functionality of the GoutGuard App, including but not limited to its
           design, graphics, text, logos, icons, software code, purine database, and AI analysis algorithms,
-          are the exclusive property of GoutCare and are protected by copyright, trademark, and other
+          are the exclusive property of GoutGuard and are protected by copyright, trademark, and other
           intellectual property laws. You may not copy, modify, distribute, sell, or lease any part of the
           App or its content without our prior written consent. Your use of the App does not grant you any
           ownership rights to the App or its content.
@@ -228,7 +228,7 @@ export default function TermsOfServicePage() {
           10. Indemnification
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          You agree to indemnify, defend, and hold harmless GoutCare and its officers, directors,
+          You agree to indemnify, defend, and hold harmless GoutGuard and its officers, directors,
           employees, agents, and affiliates from and against any and all claims, damages, losses,
           liabilities, costs, and expenses (including reasonable attorneys&apos; fees) arising out of or
           related to your use of the App, your violation of these Terms, or your violation of any rights of
@@ -286,15 +286,15 @@ export default function TermsOfServicePage() {
           If you have any questions or concerns about these Terms of Service, please contact us at:
         </p>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-primary)', marginTop: 8 }}>
-          support@goutcare.app
+          support@goutguard.app
         </p>
       </section>
 
       {/* Footer */}
       <footer className="disclaimer" style={{ marginTop: 32 }}>
-        <p>GoutCare is not a substitute for professional medical advice.</p>
+        <p>GoutGuard is not a substitute for professional medical advice.</p>
         <p style={{ marginTop: 4 }}>
-          By using GoutCare, you agree to these Terms of Service.
+          By using GoutGuard, you agree to these Terms of Service.
         </p>
       </footer>
     </div>
