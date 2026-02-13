@@ -4,10 +4,6 @@ const config: CapacitorConfig = {
   appId: 'com.goutguard.app',
   appName: 'GoutGuard',
   webDir: 'out',
-  server: {
-    url: 'https://goutguard.vercel.app',
-    cleartext: false,
-  },
   plugins: {
     LocalNotifications: {
       smallIcon: 'ic_stat_icon',
