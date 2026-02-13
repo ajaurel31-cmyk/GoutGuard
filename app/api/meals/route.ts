@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
+}
+
+function jsonResponse(body: any, init?: { status?: number }) {
+  return NextResponse.json(body, { ...init, headers: CORS_HEADERS });
+}
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -23,7 +37,7 @@ interface GeneratedMeal {
 }
 
 // ---------------------------------------------------------------------------
-// System prompt for OpenAI
+// System prompt for Anthropic Claude
 // ---------------------------------------------------------------------------
 
 const SYSTEM_PROMPT = `You are a nutrition expert specializing in gout-friendly, low-purine meal planning. Generate meal suggestions formatted as a JSON array.
@@ -272,7 +286,7 @@ export async function POST(request: NextRequest) {
         fallback = FALLBACK_MEALS[category] || FALLBACK_MEALS['breakfast'];
       }
 
-      return NextResponse.json({ success: true, meals: fallback });
+      return jsonResponse({ success: true, meals: fallback });
     }
 
     // Build user prompt with context
@@ -309,7 +323,7 @@ Return ONLY a JSON array of meal objects. No additional text or explanation.`;
       // Fall back to hardcoded meals on empty response
       const category = mealType.toLowerCase();
       const fallback = FALLBACK_MEALS[category] || FALLBACK_MEALS['breakfast'];
-      return NextResponse.json({ success: true, meals: fallback });
+      return jsonResponse({ success: true, meals: fallback });
     }
 
     // Parse the JSON response
@@ -322,14 +336,14 @@ Return ONLY a JSON array of meal objects. No additional text or explanation.`;
       // Fall back to hardcoded meals
       const category = mealType.toLowerCase();
       const fallback = FALLBACK_MEALS[category] || FALLBACK_MEALS['breakfast'];
-      return NextResponse.json({ success: true, meals: fallback });
+      return jsonResponse({ success: true, meals: fallback });
     }
 
     // Validate the response is an array
     if (!Array.isArray(meals)) {
       const category = mealType.toLowerCase();
       const fallback = FALLBACK_MEALS[category] || FALLBACK_MEALS['breakfast'];
-      return NextResponse.json({ success: true, meals: fallback });
+      return jsonResponse({ success: true, meals: fallback });
     }
 
     // Ensure all meals have required fields
@@ -344,25 +358,25 @@ Return ONLY a JSON array of meal objects. No additional text or explanation.`;
       dietaryTags: Array.isArray(meal.dietaryTags) ? meal.dietaryTags : [],
     }));
 
-    return NextResponse.json({ success: true, meals: validatedMeals });
+    return jsonResponse({ success: true, meals: validatedMeals });
   } catch (error: any) {
     console.error('Meals API error:', error);
 
     if (error?.status === 401) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'Invalid API key configuration.' },
         { status: 500 },
       );
     }
 
     if (error?.status === 429) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'Rate limit exceeded. Please try again in a moment.' },
         { status: 429 },
       );
     }
 
-    return NextResponse.json(
+    return jsonResponse(
       { success: false, error: 'An unexpected error occurred. Please try again.' },
       { status: 500 },
     );

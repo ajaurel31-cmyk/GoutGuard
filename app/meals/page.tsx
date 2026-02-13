@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { generateId } from '@/lib/storage';
+import { getApiUrl } from '@/lib/api';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -646,7 +647,7 @@ export default function MealsPage() {
         }
       }
 
-      const response = await fetch('/api/meals', {
+      const response = await fetch(getApiUrl('/api/meals'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

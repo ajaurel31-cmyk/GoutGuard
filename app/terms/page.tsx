@@ -179,8 +179,8 @@ export default function TermsOfServicePage() {
           food logs, flare records, and settings, is stored locally on your device. We do not maintain user
           accounts, and we do not collect, transmit, or store your personal health information on external
           servers. When you use the AI food scanning feature, images are sent to a third-party AI service
-          (OpenAI) for analysis; however, these images are not stored on our servers and are processed in
-          accordance with OpenAI&apos;s data usage policies. For full details, please see our{' '}
+          (Anthropic) for analysis; however, these images are not stored on our servers and are processed in
+          accordance with Anthropic&apos;s data usage policies. For full details, please see our{' '}
           <Link href="/privacy" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>
             Privacy Policy
           </Link>

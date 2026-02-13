@@ -94,20 +94,20 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>
-            The photo you take or select is sent to OpenAI&apos;s API for food identification and purine
+            The photo you take or select is sent to Anthropic&apos;s API for food identification and purine
             content analysis.
           </li>
           <li>
-            The image is transmitted securely via HTTPS and is processed in real-time by OpenAI&apos;s
+            The image is transmitted securely via HTTPS and is processed in real-time by Anthropic&apos;s
             vision model.
           </li>
           <li>
             <strong>We do not store your food images on any server.</strong> The image is sent directly
-            from your device to OpenAI&apos;s API and is not retained by us.
+            from your device to Anthropic&apos;s API and is not retained by us.
           </li>
           <li>
-            OpenAI&apos;s data usage policy states that API inputs are not used to train their models. For
-            more information, refer to OpenAI&apos;s privacy documentation.
+            Anthropic&apos;s data usage policy states that API inputs are not used to train their models. For
+            more information, refer to Anthropic&apos;s privacy documentation.
           </li>
           <li>
             A thumbnail of your scanned image may be saved locally on your device as part of your scan
@@ -176,9 +176,9 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>
-            <strong>OpenAI (food analysis):</strong> Food images are sent to OpenAI&apos;s API for AI-powered
-            food identification and purine content estimation. OpenAI processes images in accordance with
-            their API data usage policy. API data is not used to train OpenAI&apos;s models.
+            <strong>Anthropic (food analysis):</strong> Food images are sent to Anthropic&apos;s API for AI-powered
+            food identification and purine content estimation. Anthropic processes images in accordance with
+            their API data usage policy. API data is not used to train Anthropic&apos;s models.
           </li>
           <li>
             <strong>Apple App Store (subscriptions):</strong> If you purchase a GoutGuard Premium
@@ -239,7 +239,7 @@ export default function PrivacyPolicyPage() {
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
           We take reasonable measures to protect the information handled by the App. All communications
-          with third-party APIs (such as OpenAI) are encrypted using HTTPS/TLS. Since your health data is
+          with third-party APIs (such as Anthropic) are encrypted using HTTPS/TLS. Since your health data is
           stored locally on your device, its security is also protected by your device&apos;s built-in
           security features (such as device passcode, Face ID, or Touch ID). We recommend keeping your
           device software up to date and using a strong device passcode to further protect your data.

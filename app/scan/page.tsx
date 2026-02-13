@@ -13,6 +13,7 @@ import {
   ScanRecord,
   FoodLogEntry,
 } from '@/lib/storage';
+import { getApiUrl } from '@/lib/api';
 
 interface AnalysisItem {
   name: string;
@@ -129,7 +130,7 @@ export default function ScanPage() {
     setAddedToLog(false);
 
     try {
-      const response = await fetch('/api/analyze', {
+      const response = await fetch(getApiUrl('/api/analyze'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: imageBase64 }),
