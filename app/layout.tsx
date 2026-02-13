@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'GoutGuard - AI Gout Management',
+  title: 'GoutCare - AI Gout Management',
   description:
     'AI-powered gout management app with food scanning, uric acid tracking, and dietary guidance.',
   manifest: '/manifest.json',

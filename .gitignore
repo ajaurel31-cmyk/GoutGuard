@@ -37,7 +37,6 @@ next-env.d.ts
 
 # iOS build artifacts
 ios/App/Pods/
-ios/App/App/public/
 ios/App/build/
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/

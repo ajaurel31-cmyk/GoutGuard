@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
+}
+
+function jsonResponse(body: any, init?: { status?: number }) {
+  return NextResponse.json(body, { ...init, headers: CORS_HEADERS });
+}
+
 const SYSTEM_PROMPT = `You are a gout nutrition expert AI. Analyze the food in this image and provide a detailed purine content analysis for someone managing gout.
 
 Return your analysis as JSON with this exact structure:
@@ -92,7 +106,7 @@ export async function POST(request: NextRequest) {
     const { image, prompt } = body;
 
     if (!image) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'No image provided.' },
         { status: 400 }
       );
@@ -102,7 +116,7 @@ export async function POST(request: NextRequest) {
 
     if (!apiKey) {
       console.warn('ANTHROPIC_API_KEY is not set. Returning mock analysis result.');
-      return NextResponse.json({ success: true, result: MOCK_RESULT });
+      return jsonResponse({ success: true, result: MOCK_RESULT });
     }
 
     const anthropic = new Anthropic({ apiKey });
@@ -152,7 +166,7 @@ export async function POST(request: NextRequest) {
     const rawContent = textBlock && 'text' in textBlock ? textBlock.text : null;
 
     if (!rawContent) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'No response from AI model.' },
         { status: 500 }
       );
@@ -164,38 +178,38 @@ export async function POST(request: NextRequest) {
       result = JSON.parse(jsonString);
     } catch {
       console.error('Failed to parse AI response as JSON:', rawContent);
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'Failed to parse AI analysis. Please try again.' },
         { status: 500 }
       );
     }
 
     if (!result.foodIdentified || !result.overallRiskLevel) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'Incomplete analysis result. Please try again.' },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ success: true, result });
+    return jsonResponse({ success: true, result });
   } catch (error: any) {
     console.error('Analyze API error:', error);
 
     if (error?.status === 401) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'Invalid API key configuration.' },
         { status: 500 }
       );
     }
 
     if (error?.status === 429) {
-      return NextResponse.json(
+      return jsonResponse(
         { success: false, error: 'Rate limit exceeded. Please try again in a moment.' },
         { status: 429 }
       );
     }
 
-    return NextResponse.json(
+    return jsonResponse(
       { success: false, error: 'An unexpected error occurred. Please try again.' },
       { status: 500 }
     );

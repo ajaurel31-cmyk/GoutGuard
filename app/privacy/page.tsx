@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Privacy Policy - GoutGuard',
-  description: 'GoutGuard Privacy Policy',
+  title: 'Privacy Policy - GoutCare',
+  description: 'GoutCare Privacy Policy',
 };
 
 export default function PrivacyPolicyPage() {
@@ -36,9 +36,9 @@ export default function PrivacyPolicyPage() {
       {/* Introduction */}
       <section style={{ marginBottom: 28 }}>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          GoutGuard (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy
-          explains how we handle information when you use the GoutGuard mobile application (&quot;App&quot;). We
-          designed GoutGuard with a privacy-first approach: your health data stays on your device, and we
+          GoutCare (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy
+          explains how we handle information when you use the GoutCare mobile application (&quot;App&quot;). We
+          designed GoutCare with a privacy-first approach: your health data stays on your device, and we
           collect as little information as possible.
         </p>
       </section>
@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
           1. Information We Collect
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginBottom: 12 }}>
-          GoutGuard is designed to collect minimal information. Here is what the App handles:
+          GoutCare is designed to collect minimal information. Here is what the App handles:
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
             details.
           </li>
           <li>
-            <strong>Subscription status:</strong> If you subscribe to GoutGuard Premium, Apple manages all
+            <strong>Subscription status:</strong> If you subscribe to GoutCare Premium, Apple manages all
             payment and subscription information. We receive only a confirmation of your subscription status
             -- not your payment details, Apple ID, or personal identity.
           </li>
@@ -94,20 +94,20 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>
-            The photo you take or select is sent to OpenAI&apos;s API for food identification and purine
+            The photo you take or select is sent to Anthropic&apos;s API for food identification and purine
             content analysis.
           </li>
           <li>
-            The image is transmitted securely via HTTPS and is processed in real-time by OpenAI&apos;s
+            The image is transmitted securely via HTTPS and is processed in real-time by Anthropic&apos;s
             vision model.
           </li>
           <li>
             <strong>We do not store your food images on any server.</strong> The image is sent directly
-            from your device to OpenAI&apos;s API and is not retained by us.
+            from your device to Anthropic&apos;s API and is not retained by us.
           </li>
           <li>
-            OpenAI&apos;s data usage policy states that API inputs are not used to train their models. For
-            more information, refer to OpenAI&apos;s privacy documentation.
+            Anthropic&apos;s data usage policy states that API inputs are not used to train their models. For
+            more information, refer to Anthropic&apos;s privacy documentation.
           </li>
           <li>
             A thumbnail of your scanned image may be saved locally on your device as part of your scan
@@ -147,7 +147,7 @@ export default function PrivacyPolicyPage() {
           4. No User Accounts Required
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          GoutGuard does not require you to create a user account. There is no sign-up, login, or
+          GoutCare does not require you to create a user account. There is no sign-up, login, or
           registration process. You can start using the App immediately after downloading it. This means we
           have no way to identify you personally, and there is no user profile stored on our servers.
         </p>
@@ -159,7 +159,7 @@ export default function PrivacyPolicyPage() {
           5. No Tracking or Analytics
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          GoutGuard does not use any analytics services, tracking pixels, advertising SDKs, or third-party
+          GoutCare does not use any analytics services, tracking pixels, advertising SDKs, or third-party
           analytics tools. We do not track your behavior within the App. We do not collect crash reports,
           usage statistics, or session data. We do not use cookies or similar tracking technologies. Your
           use of the App is completely private.
@@ -172,16 +172,16 @@ export default function PrivacyPolicyPage() {
           6. Third-Party Services
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginBottom: 12 }}>
-          GoutGuard integrates with the following third-party services:
+          GoutCare integrates with the following third-party services:
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20 }}>
           <li>
-            <strong>OpenAI (food analysis):</strong> Food images are sent to OpenAI&apos;s API for AI-powered
-            food identification and purine content estimation. OpenAI processes images in accordance with
-            their API data usage policy. API data is not used to train OpenAI&apos;s models.
+            <strong>Anthropic (food analysis):</strong> Food images are sent to Anthropic&apos;s API for AI-powered
+            food identification and purine content estimation. Anthropic processes images in accordance with
+            their API data usage policy. API data is not used to train Anthropic&apos;s models.
           </li>
           <li>
-            <strong>Apple App Store (subscriptions):</strong> If you purchase a GoutGuard Premium
+            <strong>Apple App Store (subscriptions):</strong> If you purchase a GoutCare Premium
             subscription, the transaction is processed entirely by Apple through the App Store. We do not
             have access to your payment information, Apple ID, or billing details. Apple&apos;s privacy
             policy governs the handling of your payment data.
@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
           8. Children&apos;s Privacy
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          GoutGuard is not designed for or directed at children under the age of 13. Gout is predominantly
+          GoutCare is not designed for or directed at children under the age of 13. Gout is predominantly
           an adult condition, and the App&apos;s features are intended for adult users. We do not knowingly
           collect any information from children under 13. If you are a parent or guardian and believe your
           child has provided information through the App, please contact us so we can take appropriate
@@ -239,7 +239,7 @@ export default function PrivacyPolicyPage() {
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
           We take reasonable measures to protect the information handled by the App. All communications
-          with third-party APIs (such as OpenAI) are encrypted using HTTPS/TLS. Since your health data is
+          with third-party APIs (such as Anthropic) are encrypted using HTTPS/TLS. Since your health data is
           stored locally on your device, its security is also protected by your device&apos;s built-in
           security features (such as device passcode, Face ID, or Touch ID). We recommend keeping your
           device software up to date and using a strong device passcode to further protect your data.
@@ -260,7 +260,7 @@ export default function PrivacyPolicyPage() {
           }}
         >
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-            GoutGuard is not a &quot;covered entity&quot; or &quot;business associate&quot; under the Health Insurance
+            GoutCare is not a &quot;covered entity&quot; or &quot;business associate&quot; under the Health Insurance
             Portability and Accountability Act (HIPAA). The App is a consumer wellness product, not a
             medical device or healthcare service. HIPAA regulations do not apply to the data you store in
             the App. While we take your privacy seriously and store all data locally on your device, the
@@ -294,14 +294,14 @@ export default function PrivacyPolicyPage() {
           practices, please contact us at:
         </p>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-primary)', marginTop: 8 }}>
-          support@goutguard.app
+          support@goutcare.app
         </p>
       </section>
 
       {/* Footer */}
       <footer className="disclaimer" style={{ marginTop: 32 }}>
         <p>Your privacy matters. All health data stays on your device.</p>
-        <p style={{ marginTop: 4 }}>GoutGuard does not sell, share, or collect your personal data.</p>
+        <p style={{ marginTop: 4 }}>GoutCare does not sell, share, or collect your personal data.</p>
       </footer>
     </div>
   );

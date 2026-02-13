@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>GoutGuard</string>
+        <string>GoutCare</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,9 +29,9 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSCameraUsageDescription</key>
-	<string>GoutGuard needs camera access to scan food and nutrition labels for purine content analysis.</string>
+	<string>GoutCare needs camera access to scan food and nutrition labels for purine content analysis.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>GoutGuard needs photo library access to analyze food images for purine content.</string>
+	<string>GoutCare needs photo library access to analyze food images for purine content.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arm64</string>
@@ -49,5 +49,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
