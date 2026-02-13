@@ -1,4 +1,4 @@
-const CACHE_NAME = 'goutguard-v1';
+const CACHE_NAME = 'goutcare-v2';
 const STATIC_ASSETS = [
   '/',
   '/scan/',
