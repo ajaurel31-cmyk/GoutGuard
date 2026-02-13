@@ -412,7 +412,7 @@ export default function SettingsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `goutcare-export-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `goutguard-export-${new Date().toISOString().split('T')[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -430,7 +430,7 @@ export default function SettingsPage() {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>GoutCare Health Report</title>
+        <title>GoutGuard Health Report</title>
         <style>
           body { font-family: system-ui, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; color: #1a1a1a; }
           h1 { color: #4f46e5; border-bottom: 2px solid #4f46e5; padding-bottom: 8px; }
@@ -444,7 +444,7 @@ export default function SettingsPage() {
         </style>
       </head>
       <body>
-        <h1>GoutCare Health Report</h1>
+        <h1>GoutGuard Health Report</h1>
         <p class="meta">Generated on ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         <p class="meta">This report is for informational purposes. Please share with your healthcare provider.</p>
 
@@ -491,7 +491,7 @@ export default function SettingsPage() {
 
         <hr>
         <p class="meta" style="margin-top: 16px;">
-          GoutCare is not a substitute for professional medical advice.
+          GoutGuard is not a substitute for professional medical advice.
           Always consult your doctor regarding your gout management plan.
         </p>
       </body>
@@ -1027,7 +1027,7 @@ export default function SettingsPage() {
                       </div>
                     </div>
                     <p style={{ fontSize: 13, color: 'var(--color-gray-500)', marginBottom: 8 }}>
-                      Download GoutCare from the App Store to subscribe
+                      Download GoutGuard from the App Store to subscribe
                     </p>
                   </div>
                 )}
@@ -1228,13 +1228,13 @@ export default function SettingsPage() {
         <SectionHeader icon={<InfoIcon />} title="About" />
         <div className="card" style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-primary)', marginBottom: 4 }}>
-            GoutCare
+            GoutGuard
           </div>
           <div style={{ fontSize: 13, color: 'var(--color-gray-500)', marginBottom: 8 }}>
             Version 1.0.0
           </div>
-          <p style={{ fontSize: 13, color: 'var(--color-gray-400)', marginBottom: 12 }}>
-            Made with care for gout sufferers
+          <p style={{ fontSize: 12, color: 'var(--color-gray-400)', marginBottom: 12 }}>
+            &copy; {new Date().getFullYear()} GoutGuard. All rights reserved.
           </p>
           <div
             style={{
@@ -1247,7 +1247,7 @@ export default function SettingsPage() {
               textAlign: 'left',
             }}
           >
-            <strong>Medical Disclaimer:</strong> GoutCare is designed as a tracking and informational
+            <strong>Medical Disclaimer:</strong> GoutGuard is designed as a tracking and informational
             tool only. It is not intended to diagnose, treat, cure, or prevent any disease. The purine
             estimates and meal suggestions are approximations and should not replace professional medical
             advice. Always consult your healthcare provider before making changes to your diet,

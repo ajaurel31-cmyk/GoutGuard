@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Medical Disclaimer - GoutCare',
-  description: 'GoutCare Medical Disclaimer',
+  title: 'Medical Disclaimer - GoutGuard',
+  description: 'GoutGuard Medical Disclaimer',
 };
 
 export default function DisclaimerPage() {
@@ -30,7 +30,7 @@ export default function DisclaimerPage() {
 
       <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 4 }}>Medical Disclaimer</h1>
       <p style={{ fontSize: 13, color: 'var(--color-gray-500)', marginBottom: 24 }}>
-        Please read this disclaimer carefully before using GoutCare.
+        Please read this disclaimer carefully before using GoutGuard.
       </p>
 
       {/* Critical Warning Box */}
@@ -54,7 +54,7 @@ export default function DisclaimerPage() {
           </h2>
         </div>
         <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--color-gray-700)', fontWeight: 600 }}>
-          GoutCare is NOT a substitute for professional medical advice, diagnosis, or treatment. This
+          GoutGuard is NOT a substitute for professional medical advice, diagnosis, or treatment. This
           application is not intended to diagnose, treat, cure, or prevent any disease or medical condition.
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function DisclaimerPage() {
           1. Not a Substitute for Professional Medical Advice
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          The information, tools, and features provided by GoutCare are designed for general informational
+          The information, tools, and features provided by GoutGuard are designed for general informational
           and educational purposes only. The App does not provide medical advice. Nothing contained in the
           App should be construed as medical advice, a medical opinion, or a recommendation for any specific
           treatment plan. The content is not intended to be a substitute for professional medical advice,
@@ -82,7 +82,7 @@ export default function DisclaimerPage() {
           Always seek the advice of your rheumatologist, physician, or other qualified healthcare provider
           with any questions you may have regarding gout, hyperuricemia, or any other medical condition. Do
           not disregard professional medical advice or delay in seeking it because of something you have
-          read, seen, or interpreted from the GoutCare App. If you think you may have a medical emergency,
+          read, seen, or interpreted from the GoutGuard App. If you think you may have a medical emergency,
           call your doctor, go to the emergency room, or call 911 immediately.
         </p>
       </section>
@@ -93,7 +93,7 @@ export default function DisclaimerPage() {
           3. Purine Content Estimates Are Approximations
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          The purine content values displayed in GoutCare, whether from the built-in food database or from
+          The purine content values displayed in GoutGuard, whether from the built-in food database or from
           AI food scanning analysis, are estimates and approximations only. Actual purine content can vary
           significantly based on:
         </p>
@@ -150,13 +150,13 @@ export default function DisclaimerPage() {
         >
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', fontWeight: 600 }}>
             Never start, stop, increase, decrease, or otherwise change your medication regimen based on
-            information or suggestions provided by GoutCare.
+            information or suggestions provided by GoutGuard.
           </p>
         </div>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginTop: 12 }}>
           Gout medications such as allopurinol, febuxostat, colchicine, and others require careful medical
           supervision. Dosage changes, even those that seem minor, can have significant health consequences.
-          The medication reminder feature in GoutCare is designed only to help you remember to take
+          The medication reminder feature in GoutGuard is designed only to help you remember to take
           medications as prescribed by your doctor -- it is not a recommendation system.
         </p>
       </section>
@@ -179,7 +179,7 @@ export default function DisclaimerPage() {
             immediately.
           </p>
           <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-            Do not use GoutCare or any mobile application as a substitute for emergency medical services.
+            Do not use GoutGuard or any mobile application as a substitute for emergency medical services.
             Severe gout symptoms, signs of infection in a joint, sudden severe pain accompanied by fever,
             or any other acute medical symptoms require immediate professional medical attention.
           </p>
@@ -206,7 +206,7 @@ export default function DisclaimerPage() {
           8. Food Recommendations Are General Guidelines
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          The food recommendations, purine risk levels, and dietary suggestions provided by GoutCare are
+          The food recommendations, purine risk levels, and dietary suggestions provided by GoutGuard are
           based on generally accepted nutritional guidelines for gout management. They are general guidelines
           and may not be appropriate for every individual. Dietary needs vary based on your overall health
           status, other medical conditions, medications, allergies, and other personal factors. Always
@@ -224,7 +224,7 @@ export default function DisclaimerPage() {
           may still trigger a gout flare in some individuals due to personal metabolic differences, genetic
           factors, kidney function, medication interactions, or other variables. Conversely, some
           individuals may tolerate certain &quot;high purine&quot; foods without immediate adverse effects. The
-          purine risk classifications in GoutCare represent population-level data and may not accurately
+          purine risk classifications in GoutGuard represent population-level data and may not accurately
           predict your individual response.
         </p>
       </section>
@@ -235,7 +235,7 @@ export default function DisclaimerPage() {
           10. No Diagnostic Capability
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          GoutCare cannot diagnose gout, hyperuricemia, or any other medical condition. The App cannot
+          GoutGuard cannot diagnose gout, hyperuricemia, or any other medical condition. The App cannot
           determine whether a joint pain episode is a gout flare, an infection, or another condition. The
           flare logging feature is a personal tracking tool, not a diagnostic instrument. Only a qualified
           healthcare provider can diagnose medical conditions through proper clinical evaluation, laboratory
@@ -249,7 +249,7 @@ export default function DisclaimerPage() {
           11. Limitation of Liability for Health Decisions
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          The creators, developers, and operators of GoutCare shall not be held liable for any health
+          The creators, developers, and operators of GoutGuard shall not be held liable for any health
           outcomes, adverse effects, injuries, or damages that may result from:
         </p>
         <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20, marginTop: 8 }}>
@@ -262,7 +262,7 @@ export default function DisclaimerPage() {
           <li>Any other use of the App&apos;s features or information</li>
         </ul>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)', marginTop: 12 }}>
-          You use GoutCare entirely at your own risk and assume full responsibility for all health
+          You use GoutGuard entirely at your own risk and assume full responsibility for all health
           decisions you make.
         </p>
       </section>
@@ -281,7 +281,7 @@ export default function DisclaimerPage() {
           }}
         >
           <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--color-gray-700)' }}>
-            By downloading, installing, and using GoutCare, you acknowledge and agree that:
+            By downloading, installing, and using GoutGuard, you acknowledge and agree that:
           </p>
           <ul style={{ fontSize: 14, lineHeight: 1.9, color: 'var(--color-gray-700)', paddingLeft: 20, marginTop: 8 }}>
             <li>The App is not a medical device and does not provide medical advice.</li>
@@ -302,18 +302,18 @@ export default function DisclaimerPage() {
           Questions or Concerns
         </h2>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-gray-700)' }}>
-          If you have any questions about this medical disclaimer or any other aspect of GoutCare, please
+          If you have any questions about this medical disclaimer or any other aspect of GoutGuard, please
           contact us at:
         </p>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-primary)', marginTop: 8 }}>
-          support@goutcare.app
+          support@goutguard.app
         </p>
       </section>
 
       {/* Footer */}
       <footer className="disclaimer" style={{ marginTop: 32 }}>
         <p style={{ fontWeight: 600 }}>
-          GoutCare is not a substitute for professional medical advice.
+          GoutGuard is not a substitute for professional medical advice.
         </p>
         <p style={{ marginTop: 4 }}>
           Always consult your rheumatologist or healthcare provider for gout management.

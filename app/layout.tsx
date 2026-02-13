@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'GoutCare - AI Gout Management',
+  title: 'GoutGuard - AI Gout Management',
   description:
     'AI-powered gout management app with food scanning, uric acid tracking, and dietary guidance.',
   manifest: '/manifest.json',
@@ -41,6 +41,17 @@ function ThemeScript() {
           document.documentElement.setAttribute('data-theme', 'light');
         }
       } catch (e) {}
+      // Clear stale service workers and caches
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(r) { r.unregister(); });
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(n) { caches.delete(n); });
+        });
+      }
     })();
   `;
   return <script dangerouslySetInnerHTML={{ __html: script }} />;
