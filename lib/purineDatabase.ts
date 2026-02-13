@@ -1,4 +1,4 @@
-// Purine Database for GoutGuard
+// Purine Database for GoutCare
 // Comprehensive database of 500+ foods with purine content
 // Based on medical literature and nutritional research
 

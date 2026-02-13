@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.goutguard.app',
-  appName: 'GoutGuard',
+  appName: 'GoutCare',
   webDir: 'out',
   plugins: {
     LocalNotifications: {
@@ -16,7 +16,7 @@ const config: CapacitorConfig = {
   },
   ios: {
     contentInset: 'automatic',
-    scheme: 'GoutGuard',
+    scheme: 'GoutCare',
   },
 };
 
