@@ -172,7 +172,7 @@ function Toggle({
         height: 28,
         borderRadius: 999,
         border: 'none',
-        background: checked ? 'var(--color-primary)' : 'var(--color-gray-300)',
+        background: checked ? '#34C759' : 'var(--color-gray-300)',
         cursor: 'pointer',
         transition: 'background 0.2s',
         flexShrink: 0,
