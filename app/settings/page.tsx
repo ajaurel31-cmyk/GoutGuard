@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getProfile, saveProfile, exportAllData, clearAllData, UserProfile } from '@/lib/storage';
 import { isNativePlatform, PRODUCT_IDS } from '@/lib/subscription';
+import { scheduleAllReminders, cancelAllReminders } from '@/lib/notifications';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -557,6 +558,15 @@ export default function SettingsPage() {
     }
   }
 
+  // Reschedule notifications when any reminder setting changes
+  function handleReminderChange(updatedProfile: UserProfile) {
+    if (!updatedProfile.notificationsEnabled) {
+      cancelAllReminders().catch(() => {});
+    } else {
+      scheduleAllReminders(updatedProfile).catch(() => {});
+    }
+  }
+
   // Convert oz to mL for display
   function ozToMl(oz: number): number {
     return Math.round(oz * 29.5735);
@@ -800,29 +810,332 @@ export default function SettingsPage() {
       <section style={{ marginBottom: 28 }}>
         <SectionHeader icon={<BellIcon />} title="Notifications" />
         <div className="card">
-          <SettingsRow label="Enable Notifications" description="Master toggle for all notifications">
+          <SettingsRow label="Enable Notifications" description="Master toggle for all reminders">
             <Toggle
               checked={profile.notificationsEnabled}
-              onChange={(v) => updateProfile({ notificationsEnabled: v })}
+              onChange={(v) => {
+                updateProfile({ notificationsEnabled: v });
+                handleReminderChange({ ...profile, notificationsEnabled: v });
+              }}
               label="Enable notifications"
             />
           </SettingsRow>
 
-          <SettingsRow label="Water Reminders" description="Periodic reminders to stay hydrated">
-            <Toggle
-              checked={profile.waterReminders && profile.notificationsEnabled}
-              onChange={(v) => updateProfile({ waterReminders: v })}
-              label="Water reminders"
-            />
-          </SettingsRow>
+          {profile.notificationsEnabled && (
+            <>
+              {/* --- Water Reminders --- */}
+              <div style={{ padding: '14px 0', borderBottom: '1px solid var(--color-gray-200)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--foreground)' }}>
+                      Water Reminders
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--color-gray-500)', marginTop: 2 }}>
+                      Stay hydrated throughout the day
+                    </div>
+                  </div>
+                  <Toggle
+                    checked={profile.waterReminders}
+                    onChange={(v) => {
+                      updateProfile({ waterReminders: v });
+                      handleReminderChange({ ...profile, waterReminders: v });
+                    }}
+                    label="Water reminders"
+                  />
+                </div>
+                {profile.waterReminders && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10, paddingLeft: 0, marginTop: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>Every</span>
+                      <select
+                        value={profile.waterReminderInterval ?? 2}
+                        onChange={(e) => {
+                          const val = Number(e.target.value);
+                          updateProfile({ waterReminderInterval: val });
+                          handleReminderChange({ ...profile, waterReminderInterval: val });
+                        }}
+                        style={{
+                          padding: '6px 10px',
+                          borderRadius: 8,
+                          border: '1px solid var(--color-gray-200)',
+                          background: 'var(--background)',
+                          color: 'var(--foreground)',
+                          fontSize: 13,
+                          fontFamily: 'inherit',
+                        }}
+                      >
+                        <option value={1}>1 hour</option>
+                        <option value={2}>2 hours</option>
+                        <option value={3}>3 hours</option>
+                        <option value={4}>4 hours</option>
+                      </select>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>From</span>
+                      <input
+                        type="time"
+                        value={profile.waterReminderStartTime ?? '08:00'}
+                        onChange={(e) => {
+                          updateProfile({ waterReminderStartTime: e.target.value });
+                          handleReminderChange({ ...profile, waterReminderStartTime: e.target.value });
+                        }}
+                        style={{
+                          padding: '6px 10px',
+                          borderRadius: 8,
+                          border: '1px solid var(--color-gray-200)',
+                          background: 'var(--background)',
+                          color: 'var(--foreground)',
+                          fontSize: 13,
+                          fontFamily: 'inherit',
+                        }}
+                      />
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>Until</span>
+                      <input
+                        type="time"
+                        value={profile.waterReminderEndTime ?? '20:00'}
+                        onChange={(e) => {
+                          updateProfile({ waterReminderEndTime: e.target.value });
+                          handleReminderChange({ ...profile, waterReminderEndTime: e.target.value });
+                        }}
+                        style={{
+                          padding: '6px 10px',
+                          borderRadius: 8,
+                          border: '1px solid var(--color-gray-200)',
+                          background: 'var(--background)',
+                          color: 'var(--foreground)',
+                          fontSize: 13,
+                          fontFamily: 'inherit',
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
 
-          <SettingsRow label="Medication Reminders" description="Reminders to take your medications">
-            <Toggle
-              checked={profile.medicationReminders && profile.notificationsEnabled}
-              onChange={(v) => updateProfile({ medicationReminders: v })}
-              label="Medication reminders"
-            />
-          </SettingsRow>
+              {/* --- Purine Reminders --- */}
+              <div style={{ padding: '14px 0', borderBottom: '1px solid var(--color-gray-200)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--foreground)' }}>
+                      Purine Logging
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--color-gray-500)', marginTop: 2 }}>
+                      Daily reminder to log your meals
+                    </div>
+                  </div>
+                  <Toggle
+                    checked={profile.purineReminders ?? true}
+                    onChange={(v) => {
+                      updateProfile({ purineReminders: v });
+                      handleReminderChange({ ...profile, purineReminders: v });
+                    }}
+                    label="Purine reminders"
+                  />
+                </div>
+                {(profile.purineReminders ?? true) && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+                    <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>Remind at</span>
+                    <input
+                      type="time"
+                      value={profile.purineReminderTime ?? '19:00'}
+                      onChange={(e) => {
+                        updateProfile({ purineReminderTime: e.target.value });
+                        handleReminderChange({ ...profile, purineReminderTime: e.target.value });
+                      }}
+                      style={{
+                        padding: '6px 10px',
+                        borderRadius: 8,
+                        border: '1px solid var(--color-gray-200)',
+                        background: 'var(--background)',
+                        color: 'var(--foreground)',
+                        fontSize: 13,
+                        fontFamily: 'inherit',
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* --- Uric Acid Reminders --- */}
+              <div style={{ padding: '14px 0', borderBottom: '1px solid var(--color-gray-200)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--foreground)' }}>
+                      Uric Acid Check
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--color-gray-500)', marginTop: 2 }}>
+                      Periodic reminder to measure levels
+                    </div>
+                  </div>
+                  <Toggle
+                    checked={profile.uricAcidReminders ?? true}
+                    onChange={(v) => {
+                      updateProfile({ uricAcidReminders: v });
+                      handleReminderChange({ ...profile, uricAcidReminders: v });
+                    }}
+                    label="Uric acid reminders"
+                  />
+                </div>
+                {(profile.uricAcidReminders ?? true) && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>Frequency</span>
+                      <select
+                        value={profile.uricAcidReminderInterval ?? 'weekly'}
+                        onChange={(e) => {
+                          const val = e.target.value as 'weekly' | 'biweekly' | 'monthly';
+                          updateProfile({ uricAcidReminderInterval: val });
+                          handleReminderChange({ ...profile, uricAcidReminderInterval: val });
+                        }}
+                        style={{
+                          padding: '6px 10px',
+                          borderRadius: 8,
+                          border: '1px solid var(--color-gray-200)',
+                          background: 'var(--background)',
+                          color: 'var(--foreground)',
+                          fontSize: 13,
+                          fontFamily: 'inherit',
+                        }}
+                      >
+                        <option value="weekly">Weekly</option>
+                        <option value="biweekly">Every 2 weeks</option>
+                        <option value="monthly">Monthly</option>
+                      </select>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>
+                        {(profile.uricAcidReminderInterval ?? 'weekly') === 'monthly' ? 'Day of month' : 'Day'}
+                      </span>
+                      {(profile.uricAcidReminderInterval ?? 'weekly') === 'monthly' ? (
+                        <select
+                          value={profile.uricAcidReminderDay ?? 1}
+                          onChange={(e) => {
+                            const val = Number(e.target.value);
+                            updateProfile({ uricAcidReminderDay: val });
+                            handleReminderChange({ ...profile, uricAcidReminderDay: val });
+                          }}
+                          style={{
+                            padding: '6px 10px',
+                            borderRadius: 8,
+                            border: '1px solid var(--color-gray-200)',
+                            background: 'var(--background)',
+                            color: 'var(--foreground)',
+                            fontSize: 13,
+                            fontFamily: 'inherit',
+                          }}
+                        >
+                          {Array.from({ length: 28 }, (_, i) => (
+                            <option key={i + 1} value={i + 1}>{i + 1}</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <select
+                          value={profile.uricAcidReminderDay ?? 1}
+                          onChange={(e) => {
+                            const val = Number(e.target.value);
+                            updateProfile({ uricAcidReminderDay: val });
+                            handleReminderChange({ ...profile, uricAcidReminderDay: val });
+                          }}
+                          style={{
+                            padding: '6px 10px',
+                            borderRadius: 8,
+                            border: '1px solid var(--color-gray-200)',
+                            background: 'var(--background)',
+                            color: 'var(--foreground)',
+                            fontSize: 13,
+                            fontFamily: 'inherit',
+                          }}
+                        >
+                          <option value={1}>Sunday</option>
+                          <option value={2}>Monday</option>
+                          <option value={3}>Tuesday</option>
+                          <option value={4}>Wednesday</option>
+                          <option value={5}>Thursday</option>
+                          <option value={6}>Friday</option>
+                          <option value={7}>Saturday</option>
+                        </select>
+                      )}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>Time</span>
+                      <input
+                        type="time"
+                        value={profile.uricAcidReminderTime ?? '09:00'}
+                        onChange={(e) => {
+                          updateProfile({ uricAcidReminderTime: e.target.value });
+                          handleReminderChange({ ...profile, uricAcidReminderTime: e.target.value });
+                        }}
+                        style={{
+                          padding: '6px 10px',
+                          borderRadius: 8,
+                          border: '1px solid var(--color-gray-200)',
+                          background: 'var(--background)',
+                          color: 'var(--foreground)',
+                          fontSize: 13,
+                          fontFamily: 'inherit',
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* --- Flare Check-in --- */}
+              <div style={{ padding: '14px 0', borderBottom: '1px solid var(--color-gray-200)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--foreground)' }}>
+                      Flare Check-In
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--color-gray-500)', marginTop: 2 }}>
+                      Daily reminder to log symptoms
+                    </div>
+                  </div>
+                  <Toggle
+                    checked={profile.flareReminders ?? true}
+                    onChange={(v) => {
+                      updateProfile({ flareReminders: v });
+                      handleReminderChange({ ...profile, flareReminders: v });
+                    }}
+                    label="Flare reminders"
+                  />
+                </div>
+                {(profile.flareReminders ?? true) && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+                    <span style={{ fontSize: 13, color: 'var(--color-gray-500)' }}>Remind at</span>
+                    <input
+                      type="time"
+                      value={profile.flareReminderTime ?? '20:00'}
+                      onChange={(e) => {
+                        updateProfile({ flareReminderTime: e.target.value });
+                        handleReminderChange({ ...profile, flareReminderTime: e.target.value });
+                      }}
+                      style={{
+                        padding: '6px 10px',
+                        borderRadius: 8,
+                        border: '1px solid var(--color-gray-200)',
+                        background: 'var(--background)',
+                        color: 'var(--foreground)',
+                        fontSize: 13,
+                        fontFamily: 'inherit',
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* --- Medication Reminders --- */}
+              <SettingsRow label="Medication Reminders" description="Reminders to take your medications">
+                <Toggle
+                  checked={profile.medicationReminders}
+                  onChange={(v) => updateProfile({ medicationReminders: v })}
+                  label="Medication reminders"
+                />
+              </SettingsRow>
+            </>
+          )}
         </div>
       </section>
 
