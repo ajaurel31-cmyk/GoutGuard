@@ -6,6 +6,7 @@ SIZES = {
     "public/icon-512.png": 512,
     "public/icon-192.png": 192,
     "app-icon-1024.png": 1024,
+    "ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png": 1024,
 }
 
 
@@ -117,7 +118,13 @@ def draw_icon(size: int) -> Image.Image:
 
 for path, sz in SIZES.items():
     icon = draw_icon(sz)
-    icon.save(path)
+    # iOS app icons must NOT have alpha/transparency — Apple applies its own mask
+    if "AppIcon" in path:
+        bg = Image.new("RGB", (sz, sz), (26, 54, 175))
+        bg.paste(icon, (0, 0), icon)
+        bg.save(path)
+    else:
+        icon.save(path)
     print(f"Saved {path} ({sz}x{sz})")
 
 print("Done!")
