@@ -294,7 +294,7 @@ export default function PrivacyPolicyPage() {
           practices, please contact us at:
         </p>
         <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-primary)', marginTop: 8 }}>
-          support@goutguard.app
+          support@goutcare.app
         </p>
       </section>
 

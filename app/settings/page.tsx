@@ -1511,7 +1511,8 @@ export default function SettingsPage() {
             { label: 'Terms of Service', href: '/terms' },
             { label: 'Privacy Policy', href: '/privacy' },
             { label: 'Medical Disclaimer', href: '/disclaimer' },
-          ].map((link, idx) => (
+            { label: 'Support', href: '/support' },
+          ].map((link, idx, arr) => (
             <a
               key={link.href}
               href={link.href}
@@ -1520,7 +1521,7 @@ export default function SettingsPage() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 padding: '12px 0',
-                borderBottom: idx < 2 ? '1px solid var(--color-gray-200)' : 'none',
+                borderBottom: idx < arr.length - 1 ? '1px solid var(--color-gray-200)' : 'none',
                 textDecoration: 'none',
                 color: 'var(--foreground)',
                 fontSize: 14,
