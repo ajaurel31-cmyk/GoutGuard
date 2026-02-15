@@ -1,5 +1,5 @@
 /* ============================================================
-   GoutGuard — Global Stylesheet
+   GoutCare — Global Stylesheet
    Comprehensive health-tracking app for gout management
    ============================================================ */
 
@@ -1199,7 +1199,7 @@ p {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  background-color: var(--primary-bg);
+  background-color: transparent;
 }
 
 .quick-action__label {

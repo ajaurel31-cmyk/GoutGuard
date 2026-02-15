@@ -51,8 +51,8 @@ Payment is charged to your Apple ID account at confirmation of purchase. Subscri
 
 MEDICAL DISCLAIMER: GoutGuard is not a medical device and does not provide medical advice, diagnosis, or treatment. It is intended for informational purposes only. Always consult your rheumatologist or healthcare provider regarding your gout management. Do not start, stop, or change medications based on app information.
 
-Privacy Policy: https://goutguard.app/privacy
-Terms of Service: https://goutguard.app/terms
+Privacy Policy: https://goutcare.app/privacy
+Terms of Service: https://goutcare.app/terms
 
 ## Keywords
 gout, uric acid, purine, food scanner, gout diet, gout tracker, uric acid tracker, gout flare, gout management, low purine
@@ -69,7 +69,7 @@ Welcome to GoutGuard! We're excited to bring you the first release of our AI-pow
 - Daily Purine Budget: Set targets and track your purine intake throughout the day
 - 100% Private: All health data stored locally on your device
 
-We'd love to hear your feedback! Contact us at support@goutguard.app.
+We'd love to hear your feedback! Contact us at support@goutcare.app.
 
 ## Promotional Text
 Scan your food with AI to check purine levels instantly. Track uric acid, log flares, and manage gout smarter -- all with complete privacy.
@@ -82,4 +82,4 @@ Scan your food with AI to check purine levels instantly. Track uric acid, log fl
 4+ (No objectionable content)
 
 ## Copyright
-Copyright 2025 GoutGuard. All rights reserved.
+Copyright 2025 GoutCare. All rights reserved.

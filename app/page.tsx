@@ -184,7 +184,7 @@ export default function Home() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
           <img
             src="/icon-192.png"
-            alt="GoutGuard"
+            alt="GoutCare"
             width={44}
             height={44}
             style={{ borderRadius: 10 }}
@@ -441,7 +441,7 @@ export default function Home() {
 
       {/* ── Medical Disclaimer ──────────────────────────────────── */}
       <footer className="disclaimer">
-        GoutGuard is not a substitute for professional medical advice.
+        GoutCare is not a substitute for professional medical advice.
         Always consult your doctor regarding your gout management plan.
       </footer>
     </div>

@@ -1,6 +1,6 @@
 {
 	"appId": "com.goutguard.app",
-	"appName": "GoutGuard",
+	"appName": "GoutCare",
 	"webDir": "out",
 	"plugins": {
 		"LocalNotifications": {
@@ -14,7 +14,7 @@
 	},
 	"ios": {
 		"contentInset": "automatic",
-		"scheme": "GoutGuard"
+		"scheme": "GoutCare"
 	},
 	"packageClassList": [
 		"NativePurchasesPlugin",

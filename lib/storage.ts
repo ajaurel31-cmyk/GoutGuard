@@ -64,7 +64,23 @@ export interface UserProfile {
   waterIntakeGoal: number; // oz, default 64
   theme: 'light' | 'dark' | 'system';
   notificationsEnabled: boolean;
+  // Water reminders
   waterReminders: boolean;
+  waterReminderInterval: number; // hours between reminders, default 2
+  waterReminderStartTime: string; // HH:MM, default '08:00'
+  waterReminderEndTime: string; // HH:MM, default '20:00'
+  // Purine reminders
+  purineReminders: boolean;
+  purineReminderTime: string; // HH:MM, default '19:00'
+  // Uric acid reminders
+  uricAcidReminders: boolean;
+  uricAcidReminderInterval: 'weekly' | 'biweekly' | 'monthly';
+  uricAcidReminderDay: number; // 1=Sunday..7=Saturday for weekly; 1-28 for monthly
+  uricAcidReminderTime: string; // HH:MM, default '09:00'
+  // Flare check-in reminders
+  flareReminders: boolean;
+  flareReminderTime: string; // HH:MM, default '20:00'
+  // Medication reminders
   medicationReminders: boolean;
 }
 
@@ -163,6 +179,17 @@ const DEFAULT_PROFILE: UserProfile = {
   theme: 'system',
   notificationsEnabled: true,
   waterReminders: true,
+  waterReminderInterval: 2,
+  waterReminderStartTime: '08:00',
+  waterReminderEndTime: '20:00',
+  purineReminders: true,
+  purineReminderTime: '19:00',
+  uricAcidReminders: true,
+  uricAcidReminderInterval: 'weekly',
+  uricAcidReminderDay: 1,
+  uricAcidReminderTime: '09:00',
+  flareReminders: true,
+  flareReminderTime: '20:00',
   medicationReminders: true,
 };
 

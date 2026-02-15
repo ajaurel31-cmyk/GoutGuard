@@ -749,7 +749,7 @@ export default function MealsPage() {
                 Premium Feature
               </h2>
               <p style={{ fontSize: 14, color: 'var(--color-gray-500)', lineHeight: 1.6, marginBottom: 20 }}>
-                Get personalized low-purine meal suggestions with GoutGuard Premium
+                Get personalized low-purine meal suggestions with GoutCare Premium
               </p>
               <button
                 onClick={() => router.push('/settings')}
